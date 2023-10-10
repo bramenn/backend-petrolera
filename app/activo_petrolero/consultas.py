@@ -12,7 +12,7 @@ def obtener_activo_petrolero_id_db(id: str) -> ActivoPetroleroOut:
     if not activo_petrolero:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="ActivoPetrolero no encontrada",
+            detail="Activo petrolero no encontrado",
         )
 
     return parsear_activo_petrolero(activo_petrolero)
