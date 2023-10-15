@@ -1,0 +1,82 @@
+{
+    "taskDefinitionArn": "arn:aws:ecs:us-east-1:376288839410:task-definition/petrolera-backend:1",
+    "containerDefinitions": [
+        {
+            "name": "backend",
+            "image": "376288839410.dkr.ecr.us-east-1.amazonaws.com/eventos-backend-petrolera:46c56c90055a77ceb7d01a3b43e89cc9566a625d",
+            "cpu": 0,
+            "portMappings": [
+                {
+                    "name": "backend-80-tcp",
+                    "containerPort": 80,
+                    "hostPort": 80,
+                    "protocol": "tcp",
+                    "appProtocol": "http"
+                }
+            ],
+            "essential": true,
+            "environment": [
+                {
+                    "name": "AWS_REGION",
+                    "value": "us-east-1"
+                },
+                {
+                    "name": "AWS_ACCESS_KEY_ID",
+                    "value": "AKIAVPHEQA3ZGK4EVJWZ"
+                },
+                {
+                    "name": "AWS_SECRET_ACCESS_KEY",
+                    "value": "zmzuJKsU+lDIzyfQ8hbgqwrTCZ6WTvTLxE0me4Rz"
+                },
+                {
+                    "name": "POSTGRES_URI",
+                    "value": "postgresql://postgres:postgres@petroli.ceqksyv77gmu.us-east-1.rds.amazonaws.com:5432/petrolera"
+                }
+            ],
+            "environmentFiles": [],
+            "mountPoints": [],
+            "volumesFrom": []
+        }
+    ],
+    "family": "petrolera-backend",
+    "taskRoleArn": "arn:aws:iam::376288839410:role/ecsTaskExecutionRole",
+    "executionRoleArn": "arn:aws:iam::376288839410:role/ecsTaskExecutionRole",
+    "networkMode": "awsvpc",
+    "revision": 1,
+    "volumes": [],
+    "status": "ACTIVE",
+    "requiresAttributes": [
+        {
+            "name": "com.amazonaws.ecs.capability.ecr-auth"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.task-iam-role"
+        },
+        {
+            "name": "ecs.capability.execution-role-ecr-pull"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+        },
+        {
+            "name": "ecs.capability.task-eni"
+        }
+    ],
+    "placementConstraints": [],
+    "compatibilities": [
+        "EC2",
+        "FARGATE"
+    ],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "1024",
+    "memory": "2048",
+    "runtimePlatform": {
+        "cpuArchitecture": "X86_64",
+        "operatingSystemFamily": "LINUX"
+    },
+    "registeredAt": "2023-10-14T00:29:58.658Z",
+    "registeredBy": "arn:aws:iam::376288839410:user/brayanherrera",
+    "tags": []
+}
