@@ -2,7 +2,7 @@ from fastapi import status
 from fastapi.exceptions import HTTPException
 
 from .. import db
-from ..activo_petrolero.consultas import obtener_todos_activos_petrolero_db
+from ..activo_petrolero.consultas import obtener_activo_petrolero_id_db
 from ..aws_client import suscribir_responsable
 from ..responsable.consultas import obtener_responsable_id_db
 from .modelo import Suscripcion, SuscripcionIn, SuscripcionOut
@@ -55,7 +55,7 @@ def crear_suscripcion_db(
     )
 
     responsable = obtener_responsable_id_db(nueva_suscripcion.id_responsable)
-    activo_petrolero = obtener_todos_activos_petrolero_db(nueva_suscripcion.id_activo_petrolero)
+    activo_petrolero = obtener_activo_petrolero_id_db(nueva_suscripcion.id_activo_petrolero)
 
     try:
         db.session.add(suscripcion)
