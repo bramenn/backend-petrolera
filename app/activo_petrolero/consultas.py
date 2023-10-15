@@ -21,7 +21,6 @@ def obtener_activo_petrolero_id_db(id: str) -> ActivoPetroleroOut:
 def crear_activo_petrolero_db(
     nueva_activo_petrolero: ActivoPetroleroIn,
 ) -> ActivoPetroleroOut:
-
     # TODO Crear tema sns
 
     activo_petrolero = ActivoPetrolero(

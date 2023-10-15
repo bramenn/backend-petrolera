@@ -20,6 +20,21 @@ def obtener_suscripcion_id_db(id: str) -> SuscripcionOut:
     return parsear_suscripcion(suscripcion)
 
 
+def obtener_suscripciones_id_responsable_db(id_responsable: str) -> SuscripcionOut:
+
+    suscripciones = db.session.query(Suscripcion).where(
+        Suscripcion.id_responsable == id_responsable
+    )
+
+    if not suscripciones:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Suscripcion no encontrada",
+        )
+
+    return [parsear_suscripcion(suscripcion) for suscripcion in suscripciones]
+
+
 def crear_suscripcion_db(
     nueva_suscripcion: SuscripcionIn,
 ) -> SuscripcionOut:
