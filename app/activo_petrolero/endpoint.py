@@ -16,7 +16,7 @@ def obtener_activo_petrolero(id: str):
     return activo_petrolero
 
 
-@router.post("/", response_model=ActivoPetroleroOut)
+@router.post("/", response_model=ActivoPetroleroOut, summary="Cree un nuevo activo petrolero")
 def crear_activo_petrolero(nuevo_activo_petrolero: ActivoPetroleroIn):
     activo_petrolero = crear_activo_petrolero_db(nuevo_activo_petrolero)
     return activo_petrolero
