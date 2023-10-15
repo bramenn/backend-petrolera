@@ -6,10 +6,21 @@ from .consultas import (
     crear_suscripcion_db,
     obtener_suscripcion_id_db,
     obtener_suscripciones_id_responsable_db,
+    obtener_todas_suscripciones_db,
 )
 from .modelo import SuscripcionIn, SuscripcionOut
 
 router = APIRouter()
+
+
+@router.get(
+    "/",
+    response_model=List[SuscripcionOut],
+    summary="Obtenga todas las suscripciones",
+)
+def obtener_todas_suscripciones():
+    activo_petrolero = obtener_todas_suscripciones_db()
+    return activo_petrolero
 
 
 @router.get("/{id}", response_model=SuscripcionOut)

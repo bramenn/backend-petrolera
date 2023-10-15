@@ -5,6 +5,18 @@ from .. import db
 from .modelo import Responsable, ResponsableIn, ResponsableOut
 
 
+def obtener_todos_responsables_db() -> ResponsableOut:
+    responsables = db.session.query(Responsable)
+
+    if not responsables:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Responsables no encontrados",
+        )
+
+    return [parsear_responsable(responsable) for responsable in responsables]
+
+
 def obtener_responsable_id_db(id: str) -> ResponsableOut:
     responsable = db.session.query(Responsable).where(Responsable.id == id).first()
 
