@@ -6,7 +6,11 @@ from .modelo import ActivoPetroleroIn, ActivoPetroleroOut
 router = APIRouter()
 
 
-@router.get("/{id}", response_model=ActivoPetroleroOut)
+@router.get(
+    "/{id}",
+    response_model=ActivoPetroleroOut,
+    summary="Obtenga la infromación de un activo petrolero",
+)
 def obtener_activo_petrolero(id: str):
     activo_petrolero = obtener_activo_petrolero_id_db(id)
     return activo_petrolero

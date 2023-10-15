@@ -25,5 +25,4 @@ app.include_router(
 
 if __name__ == "__main__":
     Base.metadata.create_all(conn)
-    print("Hola mundo")
     uvicorn.run(app=app, host="0.0.0.0", port=80)
