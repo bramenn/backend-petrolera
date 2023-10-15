@@ -7,6 +7,18 @@ from ..aws_client import enviar_evento_petrolero
 from .modelo import EventoActivoPetrolero, EventoActivoPetroleroIn, EventoActivoPetroleroOut
 
 
+def obtener_todos_eventos_db() -> EventoActivoPetroleroOut:
+    eventos = db.session.query(EventoActivoPetrolero)
+
+    if not eventos:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Eventos no encontrados",
+        )
+
+    return [parsear_activo_petrolero(evento) for evento in eventos]
+
+
 def obtener_evento_activo_petrolero_id_db(id: str) -> EventoActivoPetroleroOut:
     evento_activo_petrolero = (
         db.session.query(EventoActivoPetrolero).where(EventoActivoPetrolero.id == id).first()

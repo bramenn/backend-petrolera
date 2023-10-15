@@ -2,10 +2,22 @@ from fastapi import status
 from fastapi.exceptions import HTTPException
 
 from .. import db
-from ..activo_petrolero.consultas import obtener_activo_petrolero_id_db
+from ..activo_petrolero.consultas import obtener_todos_activos_petrolero_db
 from ..aws_client import suscribir_responsable
 from ..responsable.consultas import obtener_responsable_id_db
 from .modelo import Suscripcion, SuscripcionIn, SuscripcionOut
+
+
+def obtener_todas_suscripciones_db() -> SuscripcionOut:
+    suscripciones = db.session.query(Suscripcion)
+
+    if not suscripciones:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Suscripciones no encontradas",
+        )
+
+    return [parsear_suscripcion(activo_petrolero) for activo_petrolero in suscripciones]
 
 
 def obtener_suscripcion_id_db(id: str) -> SuscripcionOut:
@@ -21,7 +33,6 @@ def obtener_suscripcion_id_db(id: str) -> SuscripcionOut:
 
 
 def obtener_suscripciones_id_responsable_db(id_responsable: str) -> SuscripcionOut:
-
     suscripciones = db.session.query(Suscripcion).where(
         Suscripcion.id_responsable == id_responsable
     )
@@ -44,7 +55,7 @@ def crear_suscripcion_db(
     )
 
     responsable = obtener_responsable_id_db(nueva_suscripcion.id_responsable)
-    activo_petrolero = obtener_activo_petrolero_id_db(nueva_suscripcion.id_activo_petrolero)
+    activo_petrolero = obtener_todos_activos_petrolero_db(nueva_suscripcion.id_activo_petrolero)
 
     try:
         db.session.add(suscripcion)

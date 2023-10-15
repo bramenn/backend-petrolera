@@ -6,6 +6,18 @@ from ..aws_client import crear_tema_sns
 from .modelo import ActivoPetrolero, ActivoPetroleroIn, ActivoPetroleroOut
 
 
+def obtener_todos_activos_petrolero_db() -> ActivoPetroleroOut:
+    activos_petroleros = db.session.query(ActivoPetrolero)
+
+    if not activos_petroleros:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Activos petroleros no encontrados",
+        )
+
+    return [parsear_activo_petrolero(activo_petrolero) for activo_petrolero in activos_petroleros]
+
+
 def obtener_activo_petrolero_id_db(id: str) -> ActivoPetroleroOut:
     activo_petrolero = db.session.query(ActivoPetrolero).where(ActivoPetrolero.id == id).first()
 

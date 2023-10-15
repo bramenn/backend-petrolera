@@ -1,9 +1,25 @@
+from typing import List
+
 from fastapi import APIRouter
 
-from .consultas import crear_activo_petrolero_db, obtener_activo_petrolero_id_db
+from .consultas import (
+    crear_activo_petrolero_db,
+    obtener_activo_petrolero_id_db,
+    obtener_todos_activos_petrolero_db,
+)
 from .modelo import ActivoPetroleroIn, ActivoPetroleroOut
 
 router = APIRouter()
+
+
+@router.get(
+    "/",
+    response_model=List[ActivoPetroleroOut],
+    summary="Obtenga todos los activos petroleros",
+)
+def obtener_todos_activos_petroleros():
+    activo_petrolero = obtener_todos_activos_petrolero_db()
+    return activo_petrolero
 
 
 @router.get(
@@ -11,7 +27,7 @@ router = APIRouter()
     response_model=ActivoPetroleroOut,
     summary="Obtenga la infromación de un activo petrolero",
 )
-def obtener_activo_petrolero(id: str):
+def obtener_activo_petrolero_id(id: str):
     activo_petrolero = obtener_activo_petrolero_id_db(id)
     return activo_petrolero
 
