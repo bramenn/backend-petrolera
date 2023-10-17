@@ -16,7 +16,7 @@ def obtener_todos_eventos_db() -> EventoActivoPetroleroOut:
             detail="Eventos no encontrados",
         )
 
-    return [parsear_activo_petrolero(evento) for evento in eventos]
+    return [parsear_evento_activo_petrolero(evento) for evento in eventos]
 
 
 def obtener_evento_activo_petrolero_id_db(id: str) -> EventoActivoPetroleroOut:
@@ -30,7 +30,7 @@ def obtener_evento_activo_petrolero_id_db(id: str) -> EventoActivoPetroleroOut:
             detail="Evento activo petrolero no encontrado",
         )
 
-    return parsear_activo_petrolero(evento_activo_petrolero)
+    return parsear_evento_activo_petrolero(evento_activo_petrolero)
 
 
 def crear_evento_activo_petrolero_db(
@@ -52,7 +52,7 @@ def crear_evento_activo_petrolero_db(
             data=evento_activo_petrolero.mensaje,
             tema_sns=activo_petrolero.tema_sns,
         )
-        return parsear_activo_petrolero(evento_activo_petrolero)
+        return parsear_evento_activo_petrolero(evento_activo_petrolero)
     except Exception as e:
         print("No se ha crear el evento activo petrolero: ", e)
         raise HTTPException(
@@ -61,7 +61,7 @@ def crear_evento_activo_petrolero_db(
         )
 
 
-def parsear_activo_petrolero(
+def parsear_evento_activo_petrolero(
     evento_activo_petrolero: EventoActivoPetrolero,
 ) -> EventoActivoPetroleroOut:
     return EventoActivoPetroleroOut(
