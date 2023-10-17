@@ -1,5 +1,5 @@
-from ..app.suscripcion.consultas import parsear_suscripcion
-from ..app.suscripcion.modelo import Suscripcion, SuscripcionOut
+from app.suscripcion.consultas import parsear_suscripcion
+from app.suscripcion.modelo import Suscripcion, SuscripcionOut
 
 
 def test_parsear_suscripcion():
