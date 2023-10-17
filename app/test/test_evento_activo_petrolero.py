@@ -1,5 +1,5 @@
-from app.evento_activo_petrolero.consultas import parsear_evento_activo_petrolero
-from app.evento_activo_petrolero.modelo import EventoActivoPetrolero, EventoActivoPetroleroOut
+from ..evento_activo_petrolero.consultas import parsear_evento_activo_petrolero
+from ..evento_activo_petrolero.modelo import EventoActivoPetrolero, EventoActivoPetroleroOut
 
 
 def test_parsear_evento_activo_petrolero():

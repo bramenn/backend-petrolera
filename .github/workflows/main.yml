@@ -57,7 +57,7 @@ jobs:
         pip install -r requirements.txt  -r requirements-dev.txt
     - name: Run pytest
       run: |
-        pytest -vv
+        python -m pytest -vv
 
   docker:
     if: "github.ref_name == 'master'"
