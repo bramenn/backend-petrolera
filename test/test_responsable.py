@@ -1,5 +1,5 @@
-from app.responsable.consultas import parsear_responsable
-from app.responsable.modelo import Responsable, ResponsableOut
+from ..app.responsable.consultas import parsear_responsable
+from ..app.responsable.modelo import Responsable, ResponsableOut
 
 
 def test_parsear_responsable():

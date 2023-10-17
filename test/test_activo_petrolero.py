@@ -1,5 +1,5 @@
-from app.activo_petrolero.consultas import parsear_activo_petrolero
-from app.activo_petrolero.modelo import ActivoPetrolero, ActivoPetroleroOut
+from ..app.activo_petrolero.consultas import parsear_activo_petrolero
+from ..app.activo_petrolero.modelo import ActivoPetrolero, ActivoPetroleroOut
 
 
 def test_parsear_activo_petrolero():
