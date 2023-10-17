@@ -22,13 +22,13 @@ def obtener_todos_activos_petroleros():
     return activo_petrolero
 
 
-@router.get("/{id}", response_model=ResponsableOut)
+@router.get("/{id}", response_model=ResponsableOut, summary="Obtenga un responsable por su id")
 def obtener_responsable(id: str):
     responsable = obtener_responsable_id_db(id)
     return responsable
 
 
-@router.post("/", response_model=ResponsableOut)
+@router.post("/", response_model=ResponsableOut, summary="Cree un responsable")
 def crear_responsable(nuevo_responsable: ResponsableIn):
     responsable = crear_responsable_db(nuevo_responsable)
     return responsable
